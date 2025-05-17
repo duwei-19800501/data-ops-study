@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  data-pipeline:
+    image: docker.1ms.run/python:3.8-slim
+    working_dir: /app
+    volumes:
+      - ./pipelines:/app/pipelines
+      - ./data:/app/data
+      - ./tests:/app/tests
+      - ./scripts:/app/scripts
+    command: >
+      sh -c "export PYTHONPATH=/app &&
+      pip install -i https://pypi.tuna.tsinghua.edu.cn/simple pandas pytest &&
+      python /app/scripts/run_etl_manual.py"

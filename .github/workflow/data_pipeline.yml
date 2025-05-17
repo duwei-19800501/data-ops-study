@@ -1,0 +1,48 @@
+name: Data Pipeline CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  schedule:
+    - cron: '0 12 * * 1-5'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'
+        cache: 'pip'
+
+    - name: Install dependencies
+      run: |
+        pip install -r requirements.txt
+        pip install pytest pytest-cov great-expectations
+        
+    - name: Run unit tests
+      run: |
+        pytest tests/unit --cov=./ --cov-report=xml
+        
+    - name: Upload coverage
+      uses: codecov/codecov-action@v3
+      
+    - name: Data quality validation
+      run: |
+        python -m great_expectations checkpoint run my_checkpoint
+        
+    - name: Archive test results
+      if: always()
+      uses: actions/upload-artifact@v3
+      with:
+        name: test-results
+        path: |
+          test-reports/
+          great_expectations/uncommitted/data_docs/
