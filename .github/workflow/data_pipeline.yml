@@ -2,9 +2,9 @@ name: Data Pipeline CI
 
 on:
   push:
-    branches: [ main ]
+    branches: [ feature/data-validation ]
   pull_request:
-    branches: [ main ]
+    branches: [ feature/data-validation ]
   schedule:
     - cron: '0 12 * * 1-5'
 
