@@ -39,7 +39,11 @@ jobs:
       
     - name: Data quality validation
       run: |
-        great_expectations checkpoint run sales_checkpoint --context-root ./gx
+        great_expectations checkpoint run sales_checkpoint --context-root ./gx \
+          --runtime-parameters='{"batch_request": {
+            "runtime_parameters": {"path": "./data/raw/sales_data.csv"},
+            "batch_identifiers": {"default_identifier": "run_001"}
+          }}'
         
     - name: Archive test results
       if: always()
