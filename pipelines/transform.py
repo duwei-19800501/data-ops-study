@@ -8,6 +8,7 @@ def validate_data(df: pd.DataFrame) -> bool:
         checkpoint_name="sales_checkpoint",
         batch_request={
             "runtime_parameters": {"batch_data": df},
+            "runtime_parameters": {"path": ""},
             "data_asset_name": "post_transform_data",
             "batch_identifiers": {"default_identifier": "default"}
         }
