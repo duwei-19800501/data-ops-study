@@ -1,0 +1,15 @@
+name: sales_checkpoint
+config_version: 1
+validations:
+  - batch_request:
+      datasource_name: pandas_datasource
+      data_connector_name: default_runtime_data_connector
+      data_asset_name: sales_data
+    expectation_suite_name: sales_data_expectations
+action_list:
+  - name: store_validation_result
+    action:
+      class_name: StoreValidationResultAction
+  - name: generate_data_docs
+    action:
+      class_name: UpdateDataDocsAction
