@@ -37,6 +37,10 @@ jobs:
     - name: Upload coverage
       uses: codecov/codecov-action@v3
       
+    - name: Help of great_expectations
+      run: |
+        great_expectations --help
+
     - name: Data quality validation
       run: |
         great_expectations checkpoint run sales_checkpoint
