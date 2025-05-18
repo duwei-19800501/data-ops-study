@@ -5,6 +5,8 @@ validations:
       datasource_name: pandas_datasource
       data_connector_name: default_runtime_data_connector
       data_asset_name: post_transform_data
+      runtime_parameters:
+        path: ./data/raw/sales_data.csv
     expectation_suite_name: sales_data_expectations
 action_list:
   - name: store_validation_result
