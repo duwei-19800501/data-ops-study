@@ -41,6 +41,10 @@ jobs:
       run: |
         great_expectations --help
 
+    - name: Get checkpoint of great_expectations
+      run: |
+        great_expectations checkpoint list
+
     - name: Data quality validation
       run: |
         great_expectations checkpoint run my_checkpoint

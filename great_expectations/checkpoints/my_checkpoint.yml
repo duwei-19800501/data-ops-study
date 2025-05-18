@@ -1,4 +1,4 @@
-name: sales_checkpoint
+name: my_checkpoint
 config_version: 1
 validations:
   - batch_request:
