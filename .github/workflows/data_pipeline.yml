@@ -39,7 +39,7 @@ jobs:
       
     - name: Data quality validation
       run: |
-        great_expectations checkpoint run sales_checkpoint --context-root ./gx
+        great_expectations checkpoint run sales_checkpoint -c ./gx
         
     - name: Archive test results
       if: always()
