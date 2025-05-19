@@ -36,7 +36,14 @@ jobs:
         
     - name: Upload coverage
       uses: codecov/codecov-action@v3
-
+      
+    - name: Debug current directory
+      run: |
+        pwd
+        ls -l
+        ls -l great_expectations
+        ls -l great_expectations/checkpoints
+        
     - name: Get checkpoint of great_expectations
       run: |
         great_expectations checkpoint list
