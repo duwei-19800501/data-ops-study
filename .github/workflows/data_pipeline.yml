@@ -28,7 +28,7 @@ jobs:
     - name: Install dependencies
       run: |
         pip install -r requirements.txt
-        pip install pytest pytest-cov great-expectations
+        pip install pytest pytest-cov "great-expectations>=0.18.0"
         
     - name: Get checkpoint of great_expectations
       run: |
