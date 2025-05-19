@@ -33,6 +33,11 @@ jobs:
     - name: Get checkpoint of great_expectations
       run: |
         great_expectations checkpoint list
+
+    - name: Set directory permissions
+      run: |
+        chmod -R 755 great_expectations/uncommitted
+        ls -la great_expectations/uncommitted
         
     - name: Data quality validation
       run: |
