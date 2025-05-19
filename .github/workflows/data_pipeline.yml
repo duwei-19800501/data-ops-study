@@ -30,6 +30,14 @@ jobs:
         pip install -r requirements.txt
         pip install pytest pytest-cov great-expectations
         
+    - name: Get checkpoint of great_expectations
+      run: |
+        great_expectations checkpoint list
+        
+    - name: Data quality validation
+      run: |
+        great_expectations checkpoint run my_checkpoint
+
     - name: Run unit tests
       run: |
         pytest tests --cov=./ --cov-report=xml
@@ -37,18 +45,6 @@ jobs:
     - name: Upload coverage
       uses: codecov/codecov-action@v3
       
-    - name: Help of great_expectations
-      run: |
-        great_expectations --help
-
-    - name: Get checkpoint of great_expectations
-      run: |
-        great_expectations checkpoint list
-
-    - name: Data quality validation
-      run: |
-        great_expectations checkpoint run my_checkpoint
-        
     - name: Archive test results
       if: always()
       uses: actions/upload-artifact@v4
